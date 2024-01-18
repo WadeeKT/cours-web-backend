@@ -12,11 +12,12 @@
         "Nivet" => 19,
         "Simonnet" => 18
     ];
-    echo "<ul>";
-    foreach( $tabEtu as $key => $value ){
-        echo "<li> $key a eu une note de $value </li> <br>";
+    echo "<table border='1'>";
+    echo "<tr><th>Nom</th><th>Note</th></tr>";
+    foreach( $tabEtu as $cle => $val ){
+        echo "<tr><td>$cle</td><td>$val</td></tr>";
     }
-    echo "</ul>";
+    echo "</table>";
     ?>
 </body>
 </html>
