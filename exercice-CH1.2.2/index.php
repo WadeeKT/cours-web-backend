@@ -8,9 +8,7 @@
 <body>
     <?php
     function estBissextile($a){
-        if (($a%4==0 && $a%100!=0) || $a%400==0){
-            return true;
-        }
+        return ($a%4==0 && $a%100!=0) || $a%400==0;
     }
 
     echo "<h3> Liste des années bissextiles entre 2020 et 2050 : </h3>";
