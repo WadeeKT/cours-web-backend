@@ -11,8 +11,17 @@
     echo "<h3> Nous sommes le $date et il est $heure heures. </h3>"
     ?>
     <?php
-    if ($heure <
-    echo ""
+    if ($heure < 12){
+        $message = "Bonne journée";
+    }
+    if ($heure >= 12 && $heure < 20 ){
+        $message = "Bon après-midi";
+    }
+    if ($heure >= 12 && $heure > 20 ){
+        $message = "Bonne soirée";
+    }
+
+    echo "$message les L2SPI"
     ?>
 </body>
 </html>
