@@ -9,15 +9,18 @@
     <?php
     function estBissextile($a){
         if (($a%4==0 && $a%100!=0) || $a%400==0){
-            return $a;
+            return true;
         }
     }
 
-    echo "<h3> Liste des années bissectiles entre 2020 et 2050 : </h3>";
+    echo "<h3> Liste des années bissextiles entre 2020 et 2050 : </h3>";
 
     for($i=2020 ; $i <= 2050 ; $i++){
-        echo estBissextile($i);
-        echo " ";
+        if (estBissextile($i)){
+            echo $i;
+            echo " ";
+
+        }
     }
     ?>
 </body>
