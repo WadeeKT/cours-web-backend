@@ -15,7 +15,7 @@
         $message = "Bonne journée";
     }
     if ($heure >= 12 && $heure < 20 ){
-        $message = "Bon après-midi";
+        $message = "Bonne après-midi";
     }
     if ($heure >= 12 && $heure > 20 ){
         $message = "Bonne soirée";
