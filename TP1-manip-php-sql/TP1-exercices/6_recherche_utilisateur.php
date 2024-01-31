@@ -65,7 +65,7 @@ function afficheUser($users){
             <option value="user">User</option>
             <option value="admin">Admin</option>
         </select>
-        <input name="categorie-search" type="submit" value="Rechercher login">
+        <input name="categorie-search" type="submit" value="Rechercher catégorie">
     </form>
 
 
