@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['ajout-submit'])){
+if(isset($_POST['login']) && isset($_POST['mdp']) && isset($_POST['nom']) && isset($_POST['categorie'])){
 
     $login = $_POST['login'];
     $mdp = $_POST['mdp'];
@@ -12,13 +12,15 @@ if(isset($_POST['ajout-submit'])){
     $query = $dp->prepare('INSERT INTO t_utilisateur (login, mdp, nom, categorie) VALUES (:login, :mdp, :nom, :categorie)');
     $query->execute([
         'login' => $login,
-        'mdp' => $mdp,
         'nom' => $nom,
+        'mdp' => $mdp,
         'categorie' => $categorie
     ]);
 
     echo "Enregistrement effectué. Retourner à <a href='3_affichage_utilisateurs.php'>l'affichage utilisateur</a>";
 
+} else{
+    echo "Erreur lors de l'ajout.";
 }
 
 ?>

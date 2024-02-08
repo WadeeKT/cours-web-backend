@@ -27,15 +27,15 @@
     <form action="5_ajout_utilisateur.php" method="post">
         <div>
             <label for="login">Login :</label>
-            <input type="text" name="login" id="login">
+            <input required type="text" name="login" id="login">
         </div>
         <div>
             <label for="mdp">Mot de passe :</label>
-            <input type="password" name="mdp" id="mdp">
+            <input required type="password" name="mdp" id="mdp">
         </div>
         <div>
             <label for="nom">Nom :</label>
-            <input type="text" name="nom" id="nom">
+            <input required type="text" name="nom" id="nom">
         </div>
         <div>
             <label for="categorie">Catégorie :</label>
@@ -48,7 +48,7 @@
     </form>
     <?php
 
-    if(isset($_POST['ajout-submit'])){
+    if(isset($_POST['login']) && isset($_POST['mdp']) && isset($_POST['nom']) && isset($_POST['categorie'])){
 
         $login = $_POST['login'];
         $mdp = $_POST['mdp'];

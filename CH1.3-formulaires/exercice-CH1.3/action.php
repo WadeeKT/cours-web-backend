@@ -22,7 +22,6 @@
         } else {
             echo "Il n'existe pas de $nomEtu dans la table";
         }
-        
     }
 
     ?>
