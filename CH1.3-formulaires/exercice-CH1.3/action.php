@@ -14,7 +14,7 @@
         "Simonnet" => 18
     ];
 
-    if(isset($_POST['recherche-submit'])){
+    if(isset($_POST['nomEtu'])){
         $nomEtu = $_POST['nomEtu'];
         if (isset($tabEtu[$nomEtu])){
             $note = $tabEtu[$nomEtu];
