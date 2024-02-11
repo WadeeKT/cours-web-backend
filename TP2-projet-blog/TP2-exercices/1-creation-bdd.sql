@@ -1,11 +1,12 @@
 -- Question 1 et 2
 -- Fait sur phpmyadmin
 
+-- Les questions suivantes sont désordonnées car elles ont été faites dans l'ordre conventionnel de création de la base de données
 
 -- Question 4
 
 CREATE TABLE Utilisateurs (
-    id_aut INT PRIMARY KEY,
+    id_aut INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(100),
     prenom VARCHAR(100),
     login VARCHAR(20),
@@ -17,7 +18,7 @@ CREATE TABLE Utilisateurs (
 -- Question 2
 
 CREATE TABLE Articles (
-    id_art INT PRIMARY KEY,
+    id_art INT PRIMARY KEY AUTO_INCREMENT,
     id_aut INT,
     titre VARCHAR(255),
     corps TEXT,
@@ -29,7 +30,7 @@ CREATE TABLE Articles (
 -- Question 3
 
 CREATE TABLE Commentaires (
-    id_com INT PRIMARY KEY,
+    id_com INT PRIMARY KEY AUTO_INCREMENT,
     id_art INT,
     pseudo VARCHAR(100),
     contenu TEXT,
@@ -48,12 +49,12 @@ VALUES
 -- Question 5
 INSERT INTO Articles (id_art, id_aut, titre, corps, date_crea, date_modif)
 VALUES
-    (1, 1, 'TitreArticle1', 'CorpsArticle1', '2024-02-08 10:00:00', '2024-02-08 10:30:00'),
-    (2, 2, 'TitreArticle2', 'CorpsArticle2', '2024-02-08 11:00:00', '2024-02-08 11:45:00'),
-    (3, 3, 'TitreArticle3', 'CorpsArticle3', '2024-02-08 12:30:00', '2024-02-08 13:15:00');
+    (1, 1, 'Titre1', 'CorpsArticle1', '2024-01-18 10:00:00', '2024-02-08 10:30:00'),
+    (2, 2, 'Titre2', 'CorpsArticle2', '2024-01-05 11:00:00', '2024-02-05 11:45:00'),
+    (3, 2, 'Titre3', 'CorpsArticle3', '2024-02-08 12:30:00', '2024-02-08 13:15:00');
 
 INSERT INTO Commentaires (id_com, id_art, pseudo, contenu, date_crea)
 VALUES
-    (1, 1, 'PseudoCommentateur1', 'ContenuCommentaire1', '2024-02-08 10:15:00'),
-    (2, 1, 'PseudoCommentateur2', 'ContenuCommentaire2', '2024-02-08 10:45:00'),
-    (3, 2, 'PseudoCommentateur3', 'ContenuCommentaire3', '2024-02-08 11:30:00');
+    (1, 1, 'PseudoC1', 'ContenuCommentaire1', '2024-01-28 10:15:00'),
+    (2, 3, 'PseudoC2', 'ContenuCommentaire2', '2024-02-12 10:45:00'),
+    (3, 2, 'PseudoC3', 'ContenuCommentaire3', '2024-01-24 11:30:00');
