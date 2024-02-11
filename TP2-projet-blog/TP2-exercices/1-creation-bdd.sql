@@ -1,3 +1,9 @@
+-- Question 1 et 2
+-- Fait sur phpmyadmin
+
+
+-- Question 4
+
 CREATE TABLE Utilisateurs (
     id_aut INT PRIMARY KEY,
     nom VARCHAR(100),
@@ -6,6 +12,9 @@ CREATE TABLE Utilisateurs (
     mdp VARCHAR(15),
     role VARCHAR(20)
 );
+
+
+-- Question 2
 
 CREATE TABLE Articles (
     id_art INT PRIMARY KEY,
@@ -17,6 +26,8 @@ CREATE TABLE Articles (
     FOREIGN KEY (id_aut) REFERENCES Utilisateurs(id_aut)
 );
 
+-- Question 3
+
 CREATE TABLE Commentaires (
     id_com INT PRIMARY KEY,
     id_art INT,
@@ -27,21 +38,20 @@ CREATE TABLE Commentaires (
 );
 
 
--- Insertion dans la table Utilisateurs
+-- Question 6
 INSERT INTO Utilisateurs (id_aut, nom, prenom, login, mdp, role)
 VALUES
 
     (1, 'Sanna', 'Thomas', 'Th', 'pwdthomas', 'auteur'),
     (2, 'Dupont', 'Maurice', 'Ma', 'pwdmaurice', 'modérateur');
 
--- Insertion dans la table Articles
+-- Question 5
 INSERT INTO Articles (id_art, id_aut, titre, corps, date_crea, date_modif)
 VALUES
     (1, 1, 'TitreArticle1', 'CorpsArticle1', '2024-02-08 10:00:00', '2024-02-08 10:30:00'),
     (2, 2, 'TitreArticle2', 'CorpsArticle2', '2024-02-08 11:00:00', '2024-02-08 11:45:00'),
     (3, 3, 'TitreArticle3', 'CorpsArticle3', '2024-02-08 12:30:00', '2024-02-08 13:15:00');
 
--- Insertion dans la table Commentaires
 INSERT INTO Commentaires (id_com, id_art, pseudo, contenu, date_crea)
 VALUES
     (1, 1, 'PseudoCommentateur1', 'ContenuCommentaire1', '2024-02-08 10:15:00'),
