@@ -15,7 +15,7 @@
                 <h2>Les 5 derniers articles</h2>
                 <?php
                     $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-                    $query = $db->prepare('SELECT titre, corps, date_crea, nom, prenom FROM articles JOIN utilisateurs USING (id_aut) ORDER BY date_crea DESC LIMIT 5');
+                    $query = $db->prepare('SELECT id_art, titre, corps, date_crea, nom, prenom FROM articles JOIN utilisateurs USING (id_aut) ORDER BY date_crea DESC LIMIT 5');
                     $query->execute();
 
                     $articles = $query->fetchAll();
@@ -26,7 +26,7 @@
                         $corps_article = strlen($article['corps']) > 150 ? $corps_decoupe150 . "..." : $corps_decoupe150; // rajouts de points de suspensions (seulement si le corps est long) pour ne pas couper la description brutalement.
 
                         echo"
-                            <a href='#' class='article'>
+                            <a href='http://localhost/cours-web-backend/TP2-projet-blog/TP2-exercices/3-gestion-des-commentaires.php?id_article=". $article['id_art'] ."' class='article'>
                                 <img src='https://boutique-courrier-picard.s3.eu-west-3.amazonaws.com/wp-content/uploads/2021/04/journaux-anniversaire-1.png' alt='Image de l'article'/>
                                 <span class='titreCorps'>
                                     <h3>" . $article['titre'] . "</h3>
