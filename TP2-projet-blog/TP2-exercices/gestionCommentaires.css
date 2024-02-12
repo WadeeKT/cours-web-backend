@@ -1,0 +1,65 @@
+body{
+    background-color: rgb(255, 249, 67);
+}
+
+main{
+    margin: 20px 20px 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main h1{
+    text-align: center;
+    font-size: 3rem;
+    margin: 20px 0;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+#formRecherche{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#formRecherche input{
+    height: 50px;
+    width: 400px;
+    border-radius: 10px 0 0 10px;
+    border : 1px solid black;
+    font-size: 1.7rem;
+    border-right: none;
+    padding: 0 10px;
+    box-shadow: 3px 3px 0px black;
+}
+
+#formRecherche input:focus, #formRecherche input:focus + button img{
+    outline: none;
+    box-shadow: 5px 5px 0px black;
+
+}
+
+
+button img{
+    height: 42px;
+    width: 42px;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 0 10px 10px 0;
+    border-left: none;
+    box-shadow: 3px 3px 0px black;
+    background-color: white;
+}
+
+#formRecherche button{
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    background-color: none !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
