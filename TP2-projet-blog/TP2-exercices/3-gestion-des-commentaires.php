@@ -11,6 +11,14 @@ session_start();
     <link rel="stylesheet" href="gestionCommentaires.css">
 </head>
 <body>
+
+    <!-- Autre écriture php -->
+    <?php if (!isset($_SESSION['moderateur'])): ?>
+        <a class="lien-connexion" href="4-se-connecter.php">Se connecter en tant que modérateur</a>
+    <?php else: ?>
+        <p class="lien-connexion">Vous êtes connecté en tant que modérateur. id_aut n°<?php echo $_SESSION['moderateur']; ?></p>
+    <?php endif; ?>
+
     <main>
         <h1>Gestion des commentaires</h1>
         <form id="formRecherche" method="post" action="3-gestion-des-commentaires.php">
@@ -103,7 +111,7 @@ session_start();
                                     <p>" . $com['contenu'] . "</p>
                                     <p class='date-com'> Le " . substr($com['date_crea'], 0, 10) . "</p>";
 
-                                if(isset($_SESSION['admin'])){
+                                if(isset($_SESSION['moderateur'])){
                                     echo "<form onsubmit='demandeValidation()' method='POST' action='3-gestion-des-commentaires.php'>
                                             <input type='hidden' name='idSupp' value='" . $com['id_com'] . "'>
                                             <input type='image' class='img-supp' src='https://pic.onlinewebfonts.com/thumbnails/icons_373777.svg' alt='Supprimer' title='Supprimer le commentaire'>
