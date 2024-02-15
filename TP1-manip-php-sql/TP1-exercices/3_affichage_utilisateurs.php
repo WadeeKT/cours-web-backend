@@ -15,7 +15,7 @@ error_reporting(E_ALL);
     <?php
         $dp = new PDO('mysql:host=localhost;dbname=securite', 'root', '');
         
-        $query = $dp->prepare('SELECT * FROM t_utilisateur');
+        $query = $dp->prepare('SELECT * FROM t_utilisateur ORDER BY nom ASC');
         $query->execute();
         
         $utilisateurs = $query->fetchAll(); 
