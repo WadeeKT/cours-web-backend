@@ -22,17 +22,22 @@
         // $req = "SELECT * FROM produits WHERE id_produit = $id";
         // $res = $bdd->query($req);  
         
-        // Nouveau Code ----------
+        // // Nouveau Code ----------
         $req = "SELECT * FROM produits WHERE id_produit = :id";
-        $query = $bdd->prepare($req);
-        $query->execute([
+        $res = $bdd->prepare($req);
+        $res->execute([
           "id" => $id
         ]);
+
+        // Autre Code -----------
+        // $req = "SELECT * FROM produits WHERE id_produit = ?";
+        // $res = $bdd->prepare($req);
+        // $res->execute(array($id));
         
         
-        if ($query) {
-            $prod = $query->fetch(PDO::FETCH_ASSOC);
-            if ($prod) {//il y a une réponse
+        if ($res) {
+            $prod = $res->fetch(PDO::FETCH_ASSOC);
+            if ($prod) { 
                 echo "<table border='1'> <tr><th>ID produuit</th>
                 <th>Titre</th> <th>Prix</th>
                 </tr>";
@@ -43,7 +48,7 @@
                     echo "<td>" . $prod['prix'] . "</td>";
                     echo "</tr>";
                 }
-                while ($prod = $query->fetch(PDO::FETCH_ASSOC));
+                while ($prod = $res->fetch(PDO::FETCH_ASSOC));
                   echo "  </table><BR>";
                 echo "<br><br><a href='recherche.php'>Une autre recherche</a>";
             }
@@ -57,7 +62,7 @@
                 echo "<a href='recherche.php'>Recommencer la saisie</a>";
         }
         echo "<BR>";
-        $query->closeCursor();
+        $res->closeCursor();
         echo "Requete exécutée : " . $req ;
     }
 ?>
@@ -65,8 +70,9 @@
 </html>
 
 <!-- 
-  En saisissant "1 OR 1=1", le script ressemble à "SELECT * FROM produits WHERE id_produit = 1 OR 1=1".
+  1. En saisissant "1 OR 1=1", le script ressemble à "SELECT * FROM produits WHERE id_produit = 1 OR 1=1".
   La condition 1=1 est toujours juste, donc chaque ligne sera renvoyée.
 
-  En saisissant "1; DELETE FROM produits;, le script ressemble à "SELECT * FROM produits WHERE id_produit = 1 ; DELETE FROM produits;"
+  2. En saisissant "1; DELETE FROM produits;, le script ressemble à "SELECT * FROM produits WHERE id_produit = 1 ; DELETE FROM produits;"
   On a fait en sorte que deux scripts sql se lancent en une seule requête, ici on a réussi à supprimer toutes les données de la table produits.
+-->
