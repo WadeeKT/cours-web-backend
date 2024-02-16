@@ -6,6 +6,9 @@
 <html lang="fr">
 
 <head>
+
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des commentaires</title>
@@ -23,6 +26,7 @@
 
     <main>
         <h1>Gestion des commentaires</h1>
+        <!-- Script Ligne 55 -->
         <form id="formRecherche" method="post" action="3-gestion-des-commentaires.php">
             <input required type="text" name="idart" placeholder="Rechercher un article par ID">
             <button onclick="submitForm()" title="Rechercher">
@@ -53,11 +57,11 @@
             // Récupération de l'id de l'article à l'aide d'une variable de session qui fait office de "variable globale".
             if (isset($_POST['idart'])) {
                 $idart = $_POST['idart'];
-                $_SESSION['idart'] = $idart;
             } else {
                 $idart = $_GET['id_article'];
-                $_SESSION['idart'] = $idart;
             }
+            $_SESSION['idart'] = $idart;
+
             $query = $db->prepare(
                 "SELECT id_art, titre, corps, date_crea, date_modif, nom, prenom
                     FROM articles JOIN utilisateurs USING(id_aut) WHERE id_art = :idart"
@@ -75,10 +79,10 @@
                 echo "<h1>" . $article['titre'] . "</h1>";
                 echo "<p class='corps-article'>" . $article['corps'] . "</p>";
                 echo "<div class='info-art-container'> 
-                                <p class='info-art'> Article écrit par " . $article['prenom'] . " " . $article['nom'] . "</p>
-                                <p class='info-art'> Publié le " . $article['date_crea'] . "</p>
-                                <p class='info-art'> Modifié le " . $article['date_modif'] . "</p>
-                            </div>";
+                          <p class='info-art'> Article écrit par " . $article['prenom'] . " " . $article['nom'] . "</p>
+                          <p class='info-art'> Publié le " . $article['date_crea'] . "</p>
+                          <p class='info-art'> Modifié le " . $article['date_modif'] . "</p>
+                      </div>";
 
                 echo "<div class='ligne-horizontale'></div>";
 
@@ -103,7 +107,7 @@
                 }
                 echo "</h2>";
 
-                // Affichage des commentaires
+                // affichage des commentaires
 
                 echo "<div class='comms-cont'>";
                 foreach ($commentaires as $com) {
@@ -114,6 +118,7 @@
                                     <p class='date-com'> Le " . substr($com['date_crea'], 0, 10) . "</p>";
 
                     if (isset($_SESSION['moderateur'])) {
+                        // Script Ligne 183
                         echo "<form onsubmit='demandeValidation()' method='POST' action='3-gestion-des-commentaires.php'>
                                             <input type='hidden' name='idSupp' value='" . $com['id_com'] . "'>
                                             <input type='image' class='img-supp' src='https://pic.onlinewebfonts.com/thumbnails/icons_373777.svg' alt='Supprimer' title='Supprimer le commentaire'>
@@ -123,10 +128,11 @@
                 }
                 echo "</div>";
 
-                // Formulaire pour ajouter un commentaire
+                //formulaire pour ajouter un commentaire
 
                 echo "<div class='comment-form'>";
                     echo "<h3>Ecrire un commentaire :</h3>";
+                    // Script Ligne 40
                     echo "<form method='POST' action=''>";
                         echo "<input required type='text' name='pseudo' placeholder='Votre pseudo'>";
                         echo "<textarea required name='comment' placeholder='Votre commentaire...'></textarea>";
@@ -144,19 +150,18 @@
 
     </main>
 
-    <?php
-
-    // suppression d'un commentaire
-
-    if (isset($_POST['idSupp'])) {
-        $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
-        $idSupp = $_POST['idSupp'];
-        $query = $db->prepare("DELETE FROM commentaires WHERE id_com = :idSupp");
-        $query->execute(["idSupp" => $idSupp]);
-        echo "<script>alert('Le commentaire a bien été supprimé.');</script>";
-        header('refresh:0;url=3-gestion-des-commentaires.php?id_article=' . $_SESSION['idart']); // refresh:0 permet de rafraîchir la page actuelle après 0 secondes.
-    }
-    ?>
+    <?php if (isset($_SESSION['moderateur'])) : ?>
+        <div class="supp-com-contcont">
+            <div class="supp-com-cont">
+                <h3>Supprimer un commentaire avec son ID (id_com)</h3>
+                <!-- Script Ligne 183 -->
+                <form onsubmit="demandeValidation()" class="supp-com-form" action="3-gestion-des-commentaires.php" method="post">
+                    <input required type="number" name="idSupp" id="idcom" placeholder="id..">
+                    <input type="submit" value="Supprimer">
+                </form>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <script>
         // fonction pour soumettre le formulaire de recherche
@@ -171,5 +176,27 @@
         }
     </script>
 </body>
+
+<?php
+// suppression d'un commentaire
+
+if (isset($_POST['idSupp'])) {
+    $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
+    $idSupp = $_POST['idSupp'];
+
+    $query = $db->prepare("SELECT * FROM commentaires WHERE id_com = :idSupp");
+    $query->execute((["idSupp" => $idSupp]));
+    $commentaire = $query->fetch();
+    if($commentaire){
+        $query = $db->prepare("DELETE FROM commentaires WHERE id_com = :idSupp");
+        $query->execute(["idSupp" => $idSupp]);
+        echo "<script>alert('Le commentaire a bien été supprimé.');</script>";
+        header('refresh:0;url=3-gestion-des-commentaires.php?id_article=' . $_SESSION['idart']); // refresh:0 permet de rafraîchir la page actuelle après 0 secondes.
+    } else{
+        echo "<script>alert('Le commentaire n'a pas été trouvé.');</script>";
+        
+    }
+}
+?>
 
 </html>
