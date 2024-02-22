@@ -1,0 +1,5 @@
+5- Système d'ajout d'un utilisateur
+
+6- Gestion des utilisateur : 
+Voir tous les utilisateurs.
+S'il est auteur, chercher les articles de cet auteur (numero article et le titre)

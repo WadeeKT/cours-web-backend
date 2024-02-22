@@ -1,0 +1,65 @@
+body{
+  background-color: rgb(255, 249, 67);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.conteneur-ajout{
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  box-shadow: 3px 3px 0px black;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 500px;
+  padding: 15px;
+}
+
+.conteneur-ajout div{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.conteneur-ajout > *{
+  margin: 5px;
+}
+
+input[type="text"], input[type="password"]{
+  width: 50%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+input[type="submit"]{
+  width: 50%;
+  padding: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  background-color: rgb(255, 249, 67);
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+label{
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  cursor: pointer;
+
+}
+
+select{
+  width: 30%;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  background-color: rgb(251, 255, 236);
+  border: 1px solid black;
+}

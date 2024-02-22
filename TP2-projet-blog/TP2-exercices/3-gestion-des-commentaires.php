@@ -26,7 +26,8 @@
 
     <main>
         <h1>Gestion des commentaires</h1>
-        <!-- Script Ligne 55 -->
+        <!-- Formulaire recherche d'article avec son ID -->
+        <!-- Script Ligne 56 -->
         <form id="formRecherche" method="post" action="3-gestion-des-commentaires.php">
             <input required type="text" name="idart" placeholder="Rechercher un article par ID">
             <button onclick="submitForm()" title="Rechercher">
@@ -37,7 +38,7 @@
         <?php
         $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
 
-        if (isset($_POST['send-commentaire']) && isset($_SESSION['idart'])) { // Les champs sont en "required" donc il n'y a pas besoin de vérifier s'ils sont remplis.
+        if (isset($_POST['send-commentaire']) && isset($_SESSION['idart'])) { // Les inputs sont en "required" donc il n'y a pas besoin de vérifier s'ils sont remplis.
             $pseudo = $_POST['pseudo'];
             $comment = $_POST['comment'];
 
@@ -118,7 +119,7 @@
                                     <p class='date-com'> Le " . substr($com['date_crea'], 0, 10) . "</p>";
 
                     if (isset($_SESSION['moderateur'])) {
-                        // Script Ligne 183
+                        // Script Ligne 187
                         echo "<form onsubmit='demandeValidation()' method='POST' action='3-gestion-des-commentaires.php'>
                                             <input type='hidden' name='idSupp' value='" . $com['id_com'] . "'>
                                             <input type='image' class='img-supp' src='https://pic.onlinewebfonts.com/thumbnails/icons_373777.svg' alt='Supprimer' title='Supprimer le commentaire'>
@@ -132,7 +133,7 @@
 
                 echo "<div class='comment-form'>";
                     echo "<h3>Ecrire un commentaire :</h3>";
-                    // Script Ligne 40
+                    // Script Ligne 41
                     echo "<form method='POST' action=''>";
                         echo "<input required type='text' name='pseudo' placeholder='Votre pseudo'>";
                         echo "<textarea required name='comment' placeholder='Votre commentaire...'></textarea>";
@@ -150,11 +151,13 @@
 
     </main>
 
+    <!-- Formulaire pour supprimer un commentaire avec son ID -->
+    <!-- Vérifier si l'utilisateur est un modérateur -->
     <?php if (isset($_SESSION['moderateur'])) : ?>
         <div class="supp-com-contcont">
             <div class="supp-com-cont">
                 <h3>Supprimer un commentaire avec son ID (id_com)</h3>
-                <!-- Script Ligne 183 -->
+                <!-- Script Ligne 187 -->
                 <form onsubmit="demandeValidation()" class="supp-com-form" action="3-gestion-des-commentaires.php" method="post">
                     <input required type="number" name="idSupp" id="idcom" placeholder="id..">
                     <input type="submit" value="Supprimer">
@@ -178,7 +181,8 @@
 </body>
 
 <?php
-// suppression d'un commentaire
+
+// Script suppression d'un commentaire avec son ID
 
 if (isset($_POST['idSupp'])) {
     $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
