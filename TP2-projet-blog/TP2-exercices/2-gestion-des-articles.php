@@ -8,6 +8,10 @@
 </head>
 <!-- Cette page n'est pas responsive, il est préférable de le visionner sur un écran d'ordinateur -->
 <body>
+
+    <?php include 'header.php'; ?>
+
+
     <main>
         <h1>Gestion des articles</h1>
         <div class="sections-conteneur">

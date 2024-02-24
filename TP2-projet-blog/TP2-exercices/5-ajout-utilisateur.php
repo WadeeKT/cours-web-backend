@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="gestionAjout.css">
 </head>
 <body>
+
+  <?php include 'header.php'; ?>
+
+  <h1>Ajout d'un utilisateur</h1>
+
   <main>
     <form class='conteneur-ajout' action="5-ajout-utilisateur.php" method="POST">
       <div>

@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <?php include 'header.php'; ?>
 
     <!-- Autre écriture php -->
     <?php if (!isset($_SESSION['moderateur'])) : ?>

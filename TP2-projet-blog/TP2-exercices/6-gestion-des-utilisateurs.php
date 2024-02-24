@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="gestionUtilisateurs.css">
 </head>
 <body>
+
+  <?php include 'header.php'; ?>
+
+
   <h1>Tous les utilisateurs</h1>
 
   <main>
@@ -14,7 +18,8 @@
   <?php
     $db = new PDO('mysql:host=localhost;dbname=blog', 'root', '');
     $query = $db->prepare('SELECT id_aut, nom, prenom, role 
-                           FROM utilisateurs');
+                           FROM utilisateurs
+                           ORDER BY role DESC');
     $query->execute();
     $users = $query->fetchAll();
     $query->closeCursor();

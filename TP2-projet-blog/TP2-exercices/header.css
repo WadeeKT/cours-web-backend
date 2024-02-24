@@ -1,0 +1,22 @@
+.div-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 0 0 10px 0px;
+  border: 2px solid black;
+  z-index: 10000;
+  max-width: 100%;
+}
+
+.div-header a{
+  font-size: .8rem;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}

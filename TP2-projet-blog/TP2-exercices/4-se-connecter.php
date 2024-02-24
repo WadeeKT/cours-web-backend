@@ -11,6 +11,10 @@ session_start();
     <link rel="stylesheet" href="seConnecter.css">
 </head>
 <body>
+
+    <?php include 'header.php'; ?>
+
+
     <h1>Se connecter en tant que modérateur</h1>
     <form method="post" action="4-se-connecter.php">
         <div>
