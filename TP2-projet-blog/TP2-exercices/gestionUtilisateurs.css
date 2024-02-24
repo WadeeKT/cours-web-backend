@@ -1,0 +1,86 @@
+body{
+  background-color: rgb(255, 249, 67);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+body > h1{    
+  text-align: center;
+  font-size: 3rem;
+  margin: 20px 0;
+  color: rgb(0, 0, 0);
+  border-radius: 20px;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 5px 5px 0px black;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 600px;
+  padding: 25px;
+}
+
+.user{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 249, 67);
+  margin: 20px 30px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 0px black;
+  border: 1px solid black;
+}
+
+.user div{
+  display: flex;
+  align-items: center;
+}
+
+
+.deroulant{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: -20px 30px 20px 30px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 3px 3px 0px black;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+
+.deroulant a{
+  padding: 0px 20px;
+  display: flex;
+  border: 1px solid #000;
+  align-items: center;
+  width: 80%;
+  margin: 5px;
+  border-radius: 20px;
+}
+
+.deroulant a:hover{
+  background-color: rgb(255, 249, 67);
+}
+
+.deroulant a p{
+  text-decoration: none;
+  color: black;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 10px;
+
+}
+
+.user *{
+  margin: 0 10px;
+}
