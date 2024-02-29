@@ -14,7 +14,7 @@ function error($code, $msg) {
     http_response_code(500);
     require 'views/500.php';
   }
-  die();
+  die(); // Arrête l'exécution du script
 }
 
 function productsIndex() {

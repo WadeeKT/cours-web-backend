@@ -1,0 +1,12 @@
+form{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 3px;
+}
+form *{
+  margin: 2px;
+}
+input[type=submit], select{
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+form{
+  display: flex;
+  flex-direction: column;
+}
+form div{
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: 4px;
+}
+#bouton-submit{
+  width: 300px;
+  margin-top: 10px;
+  cursor: pointer;
+}
