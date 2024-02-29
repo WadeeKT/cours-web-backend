@@ -1,0 +1,16 @@
+html {
+    width: 1024px;
+    margin: auto;
+}
+
+body {
+    font-family: 'Arial';
+}
+
+body > footer, body > header {
+  text-align:center;
+  background-color: lightgray;
+}
+
+
+
