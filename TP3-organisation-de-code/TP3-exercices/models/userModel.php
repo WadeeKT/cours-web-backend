@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 
 require 'config/db.php';
 
@@ -12,47 +13,47 @@ function getDatabase() {
   return $db;
 }
 
-function affichageUtilisateurs(){
+function affichageUtilisateurs(): array{
   $db = getDatabase();
   $query = $db->prepare('SELECT * FROM t_utilisateur ORDER BY nom ASC');
   $query->execute();
   return $query->fetchAll();
 }
 
-function ajoutUtilisateur($login, $mdp, $nom, $categorie){
+function ajoutUtilisateur(string $login, string $mdp, string $nom, string $categorie): bool{
   $db = getDatabase();
   $query = $db->prepare('INSERT INTO t_utilisateur (login, mdp, nom, categorie) VALUES (?, ?, ?, ?)');
   return $query->execute([$login, $mdp, $nom, $categorie]);
 }
 
-function rechercheUtilisateurLogin($login){
+function rechercheUtilisateurLogin(string $login): array{
   $db = getDatabase();
   $query = $db->prepare('SELECT * FROM t_utilisateur WHERE login = :login');
   $query->execute(["login" => $login]);
   return $query->fetchAll();
 }
 
-function rechercheUtilisateurNom($nom){
+function rechercheUtilisateurNom(string $nom): array{
   $db = getDatabase();
   $query = $db->prepare('SELECT * FROM t_utilisateur WHERE nom = :nom');
   $query->execute(["nom" => $nom]);
   return $query->fetchAll();
 }
 
-function rechercheUtilisateurCategorie($categorie){
+function rechercheUtilisateurCategorie(string $categorie): array{
   $db = getDatabase();
   $query = $db->prepare('SELECT * FROM t_utilisateur WHERE categorie = :categorie');
   $query->execute(["categorie" => $categorie]);
   return $query->fetchAll();
 }
 
-function suppressionUtilisateur($login){
+function suppressionUtilisateur(string $login): bool{
   $db = getDatabase();
   $query = $db->prepare('DELETE FROM t_utilisateur WHERE login = :login');
   return $query->execute(["login" => $login]);
 }
 
-function connexionUtilisateur($login, $mdp){
+function connexionUtilisateur(string $login, string $mdp): array{
   $db = getDatabase();
   $query = $db->prepare('SELECT * FROM t_utilisateur WHERE login = :login AND mdp = :mdp');
   $query->execute(["login" => $login, "mdp" => $mdp]);

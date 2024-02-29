@@ -14,17 +14,17 @@ function error($code, $msg) {
   die(); // Arrête l'exécution du script
 }
 
-function menuShow() {
+function menuShow(): void{
   require 'views/menuView.php';
 }
 
-function affichage(){
+function affichage(): void{
   $label = "Tous les utilisateurs";
   $users = affichageUtilisateurs();
   require 'views/affichageUtilisateursView.php';
 }
 
-function ajout(){
+function ajout(): void{
   if(isset($_POST['ajout-submit'])){
     $login = $_POST['login'];
     $mdp = $_POST['mdp'];
@@ -45,7 +45,7 @@ function ajout(){
   }
 }
 
-function recherche(){
+function recherche(): void{
   if(isset($_POST['recherche-submit'])){
     if(isset($_POST['login'])){
       $users = rechercheUtilisateurLogin($_POST['login']);
@@ -66,7 +66,7 @@ function recherche(){
   }
 }
 
-function supprimer(){
+function supprimer(): void{
   if(isset($_POST['login'])){
     $res = suppressionUtilisateur($_POST['login']);
     if($res){
@@ -80,7 +80,7 @@ function supprimer(){
   }
 }
 
-function connexion(){
+function connexion(): void{
   if(isset($_POST['login'])){
     $login = $_POST['login'];
     $mdp = $_POST['password'];
