@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        form div{
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            margin: 4px;
+        }
+        #bouton-submit{
+            width: 300px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ajout utilisateur</h1>
+    <form action="4_ajout.php" method="post">
+        <div>
+            <label for="login">Login :</label>
+            <input required type="text" name="login" id="login">
+        </div>
+        <div>
+            <label for="mdp">Mot de passe :</label>
+            <input required type="password" name="mdp" id="mdp">
+        </div>
+        <div>
+            <label for="nom">Nom :</label>
+            <input required type="text" name="nom" id="nom">
+        </div>
+        <div>
+            <label for="categorie">Catégorie :</label>
+            <select name="categorie" id="categorie">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <input name="ajout-submit" id="bouton-submit" type="submit" value="Enregistrer">
+    </form>
+</body>
+</html>
