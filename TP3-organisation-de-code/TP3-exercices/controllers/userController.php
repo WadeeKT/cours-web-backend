@@ -83,7 +83,7 @@ function supprimer(){
 function connexion(){
   if(isset($_POST['login'])){
     $login = $_POST['login'];
-    $mdp = $_POST['mdp'];
+    $mdp = $_POST['password'];
     $res = connexionUtilisateur($login, $mdp);
     if($res){
       echo "<script> window.alert('Connexion réussie'); </script> ";
