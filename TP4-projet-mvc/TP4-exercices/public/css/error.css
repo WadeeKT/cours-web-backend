@@ -1,0 +1,17 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.erreurP{
+    color: rgb(2, 42, 58);
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.retourAccueil{
+    margin-top: 5px;
+}
