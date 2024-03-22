@@ -2,7 +2,9 @@
 
 require('models/model.php');
 
-function error($code, $msg)
+// fonction d'erreur
+
+function error(int $code, string $msg): void
 {
     http_response_code($code);
     $title = "Erreur $code";
@@ -10,20 +12,16 @@ function error($code, $msg)
     require 'views/components/header.php';
     require 'views/error/error.php';
     require 'views/components/footer.php';
-    die();
+    die(); // arrêter l'exécution du script
 }
 
-function menuShow(): void
-{
-    require 'views/menuView.php';
-}
-
+// fonction d'ajout de membre
 
 function ajoutMembre(): void
 {
     if (isset($_POST['ajoutMembre'])) {
         $pseudo = $_POST['pseudo'];
-        $age = $_POST['age'];
+        $age = (int)$_POST['age'];
         $res = addMembre($pseudo, $age);
         if ($res) {
             echo "<script> window.alert('Membre ajouté'); </script> ";
@@ -40,6 +38,8 @@ function ajoutMembre(): void
     }
 }
 
+// fonction d'affichage des membres
+
 function affichageMembre(): void
 {
     $users = getAllMembre();
@@ -50,10 +50,12 @@ function affichageMembre(): void
     require 'views/components/footer.php';
 }
 
-function membre()
+// fonction de gestion d'un membre
+
+function membre(): void
 {
     if (isset($_POST['assignerRando'])) {
-        $numRando = $_POST['numRando'];
+        $numRando = (int)$_POST['numRando'];
         $pseudo = $_GET['pseudo'];
         $res = addParticipant($numRando, $pseudo);
         if ($res) {
@@ -63,7 +65,6 @@ function membre()
             error(500, "Erreur lors de l'assignation de la randonnée");
         }
     } else {
-
         if (isset($_GET['pseudo'])) {
             $pseudo = $_GET['pseudo'];
             $user = getMembre($pseudo);
@@ -84,6 +85,8 @@ function membre()
     }
 }
 
+// fonction d'ajout de randonnée
+
 function ajoutRando(): void
 {
     if (isset($_POST['ajoutRando'])) {
@@ -91,8 +94,9 @@ function ajoutRando(): void
         $dateDep = $_POST['dateDep'];
         $res = addRando($titre, $dateDep);
         if ($res) {
+            $numRando = getRandoByTitre($titre)['numRando'];
             echo "<script> window.alert('Randonnée ajoutée'); </script> ";
-            echo "<script> window.location.href = 'index.php?action=affichageRando'; </script> ";
+            echo "<script> window.location.href = 'index.php?action=randonnee&numRando=$numRando'; </script> ";
         } else {
             error(500, "Erreur lors de l'ajout de la randonnée");
         }
@@ -105,6 +109,8 @@ function ajoutRando(): void
     }
 }
 
+// fonction d'affichage des randonnées
+
 function affichageRando(): void
 {
     $allRandos = getAllRando();
@@ -115,11 +121,13 @@ function affichageRando(): void
     require 'views/components/footer.php';
 }
 
+// fonction de gestion d'une randonnée
+
 function randonnee(): void
 {
     if (isset($_POST['ajoutParticipant'])) {
         $pseudo = $_POST['pseudo'];
-        $numRando = $_GET['numRando'];
+        $numRando = (int)$_GET['numRando'];
         $res = addParticipant($numRando, $pseudo);
         if ($res) {
             echo "<script> window.alert('Participant ajouté'); </script> ";
@@ -129,7 +137,7 @@ function randonnee(): void
         }
     } else {
         if (isset($_GET['numRando'])) {
-            $numRando = $_GET['numRando'];
+            $numRando = (int)$_GET['numRando'];
             $rando = getRandoById($numRando);
             if (!$rando) {
                 error(404, "Randonnée non trouvée");
@@ -147,6 +155,8 @@ function randonnee(): void
         }
     }
 }
+
+// fonction de recherche de randonnée
 
 function rechercheRando(): void
 {
@@ -166,3 +176,4 @@ function rechercheRando(): void
         require 'views/components/footer.php';
     }
 }
+?>

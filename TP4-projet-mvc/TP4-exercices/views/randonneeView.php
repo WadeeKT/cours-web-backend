@@ -3,9 +3,6 @@
   <h2> Informations sur la randonnée </h2>
 
   <p>
-    Titre : <?php echo $rando['titre']; ?>
-  </p>
-  <p>
     Date de départ : <?php echo $rando['dateDep']; ?>
   </p>
 

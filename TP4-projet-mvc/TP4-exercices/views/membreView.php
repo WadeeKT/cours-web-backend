@@ -3,9 +3,6 @@
   <h2> Informations </h2>
 
   <p>
-    Pseudo : <?php echo $user['pseudo']; ?>
-  </p>
-  <p>
     Age : <?php echo $user['age']; ?>
   </p>
 

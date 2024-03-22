@@ -12,11 +12,12 @@
 </head>
 <body>
 <header>
+  <img class="logoUniv" src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c3/Logotype_de_l%E2%80%99universit%C3%A9_de_Corse-Pascal-Paoli.svg/1200px-Logotype_de_l%E2%80%99universit%C3%A9_de_Corse-Pascal-Paoli.svg.png" alt="Logo université de corse">
   <nav>
     <ul>
       <li><a href="index.php?action=ajoutMembre">Ajout Membre</a></li>
-      <li><a href="index.php?action=affichageMembre">Affichage Membres</a></li>
       <li><a href="index.php?action=ajoutRando">Ajout Rando</a></li>
+      <li><a href="index.php?action=affichageMembre">Affichage Membres</a></li>
       <li><a href="index.php?action=affichageRando">Affichage Rando</a></li>
       <li><a href="index.php?action=rechercheRando">Recherche Rando</a></li>
     </ul>
