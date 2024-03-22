@@ -15,7 +15,7 @@ $routes = [
     'membre' => 'membre', // afficher les infos d'un membres et les randonnées auxquelles il participe (fonctionne avec get de l'id de membre)
 ];
 
-$action = $_GET['action'] ?? 'ajoutMembre'; // ajoutMembre est l'action par défaut
+$action = $_GET['action'] ?? 'affichageMembre'; // ajoutMembre est l'action par défaut
 
 try {
     if (isset($routes[$action])) {

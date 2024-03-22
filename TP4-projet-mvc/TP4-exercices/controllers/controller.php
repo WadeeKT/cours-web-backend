@@ -2,7 +2,8 @@
 
 require('models/model.php');
 
-function error($code, $msg) {
+function error($code, $msg)
+{
     http_response_code($code);
     $title = "Erreur $code";
     $style = "public/css/error.css";
@@ -12,11 +13,35 @@ function error($code, $msg) {
     die();
 }
 
-function menuShow(): void{
-  require 'views/menuView.php';
+function menuShow(): void
+{
+    require 'views/menuView.php';
 }
 
-function affichageMembre(): void{
+
+function ajoutMembre(): void
+{
+    if (isset($_POST['ajoutMembre'])) {
+        $pseudo = $_POST['pseudo'];
+        $age = $_POST['age'];
+        $res = addMembre($pseudo, $age);
+        if ($res) {
+            echo "<script> window.alert('Membre ajouté'); </script> ";
+            echo "<script> window.location.href = 'index.php?action=membre&pseudo=$pseudo'; </script> ";
+        } else {
+            error(500, "Erreur lors de l'ajout du membre");
+        }
+    } else {
+        $style = "public/css/ajoutMembre.css";
+        $title = "Ajouter un Membre";
+        require 'views/components/header.php';
+        require 'views/ajoutMembreView.php';
+        require 'views/components/footer.php';
+    }
+}
+
+function affichageMembre(): void
+{
     $users = getAllMembre();
     $style = "public/css/affichageMembre.css";
     $title = "Affichage des Membres";
@@ -25,49 +50,119 @@ function affichageMembre(): void{
     require 'views/components/footer.php';
 }
 
-function ajoutMembre(): void{
-    if(isset($_POST['ajoutMembre'])){
-        $pseudo = $_POST['pseudo'];
-        $age = $_POST['age'];
-        $res = addMembre($pseudo, $age);
-        if($res){
-            echo "<script> window.alert('Membre ajouté'); </script> ";
-            echo "<script> window.location.href = 'index.php?action=affichageMembre'; </script> ";
-            affichageMembre(); 
-        }
-        else{
-            error(500, "Erreur lors de l'ajout du membre");
-        }
-    }
-    else {
-      $style = "public/css/ajoutMembre.css";
-      $title = "Ajouter un Membre";
-      require 'views/components/header.php';
-      require 'views/ajoutMembreView.php';
-      require 'views/components/footer.php';
-    }
-}
-
-function membre(){
-    if(isset($_GET['pseudo'])){
+function membre()
+{
+    if (isset($_POST['assignerRando'])) {
+        $numRando = $_POST['numRando'];
         $pseudo = $_GET['pseudo'];
-        $user = getMembre($pseudo);
-        if(!$user){
-            error(404, "Membre non trouvé");
-        } else{
-            $numRandos = getParticipationByMembre($pseudo);
-            $style = "public/css/membre.css";
-            $title = "Membre $pseudo";
-            require 'views/components/header.php';
-            require 'views/membreView.php';
-            require 'views/components/footer.php';
+        $res = addParticipant($numRando, $pseudo);
+        if ($res) {
+            echo "<script> window.alert('Randonnée assignée'); </script> ";
+            echo "<script> window.location.href = 'index.php?action=membre&pseudo=$pseudo'; </script> ";
+        } else {
+            error(500, "Erreur lors de l'assignation de la randonnée");
         }
-    }
-    else{
-        error(404, "Membre non trouvé");
+    } else {
+
+        if (isset($_GET['pseudo'])) {
+            $pseudo = $_GET['pseudo'];
+            $user = getMembre($pseudo);
+            if (!$user) {
+                error(404, "Membre non trouvé");
+            } else {
+                $numRandos = getParticipationByMembre($pseudo);
+                $allRandonnes = getAllRando();
+                $style = "public/css/membre.css";
+                $title = "Membre $pseudo";
+                require 'views/components/header.php';
+                require 'views/membreView.php';
+                require 'views/components/footer.php';
+            }
+        } else {
+            error(404, "Membre non trouvé");
+        }
     }
 }
 
+function ajoutRando(): void
+{
+    if (isset($_POST['ajoutRando'])) {
+        $titre = $_POST['titre'];
+        $dateDep = $_POST['dateDep'];
+        $res = addRando($titre, $dateDep);
+        if ($res) {
+            echo "<script> window.alert('Randonnée ajoutée'); </script> ";
+            echo "<script> window.location.href = 'index.php?action=affichageRando'; </script> ";
+        } else {
+            error(500, "Erreur lors de l'ajout de la randonnée");
+        }
+    } else {
+        $style = "public/css/ajoutMembre.css";
+        $title = "Ajouter une Randonnée";
+        require 'views/components/header.php';
+        require 'views/ajoutRandoView.php';
+        require 'views/components/footer.php';
+    }
+}
 
+function affichageRando(): void
+{
+    $allRandos = getAllRando();
+    $style = "public/css/affichageMembre.css";
+    $title = "Affichage des Randonnées";
+    require 'views/components/header.php';
+    require 'views/affichageRandoView.php';
+    require 'views/components/footer.php';
+}
 
-?>
+function randonnee(): void
+{
+    if (isset($_POST['ajoutParticipant'])) {
+        $pseudo = $_POST['pseudo'];
+        $numRando = $_GET['numRando'];
+        $res = addParticipant($numRando, $pseudo);
+        if ($res) {
+            echo "<script> window.alert('Participant ajouté'); </script> ";
+            echo "<script> window.location.href = 'index.php?action=randonnee&numRando=$numRando'; </script> ";
+        } else {
+            error(500, "Erreur lors de l'ajout du participant");
+        }
+    } else {
+        if (isset($_GET['numRando'])) {
+            $numRando = $_GET['numRando'];
+            $rando = getRandoById($numRando);
+            if (!$rando) {
+                error(404, "Randonnée non trouvée");
+            } else {
+                $participants = getParticipantsByNumRando($numRando);
+                $allMembres = getAllMembre();
+                $style = "public/css/membre.css";
+                $title = "Randonnée " . $rando['titre'];
+                require 'views/components/header.php';
+                require 'views/randonneeView.php';
+                require 'views/components/footer.php';
+            }
+        } else {
+            error(404, "Randonnée non trouvée");
+        }
+    }
+}
+
+function rechercheRando(): void
+{
+    if (isset($_POST['rechercheRando'])) {
+        $titre = $_POST['titre'];
+        $randos = getRandoByTitre($titre);
+        if ($randos) {
+            echo "<script> window.location.href = 'index.php?action=randonnee&numRando=" . $randos['numRando'] . "'; </script> ";
+        } else {
+            error(404, "Randonnée non trouvée");
+        }
+    } else {
+        $style = "public/css/ajoutMembre.css";
+        $title = "Recherche de Randonnée";
+        require 'views/components/header.php';
+        require 'views/rechercheRandoView.php';
+        require 'views/components/footer.php';
+    }
+}

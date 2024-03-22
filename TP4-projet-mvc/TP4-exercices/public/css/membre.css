@@ -5,12 +5,12 @@ main {
   padding: 20px;
 }
 
-main>h2{
+main > h2 {
   font-size: 30px;
   margin: 20px;
 }
 
-main>p {
+main > p {
   font-size: 20px;
   margin: 5px;
 }
@@ -37,4 +37,60 @@ main>p {
 }
 .rando p {
   font-size: 16px;
+}
+
+.addRando {
+  width: 550px;
+  cursor: pointer;
+}
+
+.addRando h2 {
+  margin: 0;
+}
+
+#form {
+  display: none;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#form select,
+#form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+#form input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+#form input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#form .btn.cancel {
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+#form .btn.cancel:hover {
+  background-color: #da190b;
 }
