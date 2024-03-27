@@ -90,8 +90,8 @@
                             $publication = $db->prepare('INSERT INTO articles (id_aut, titre, corps, date_crea, date_modif) VALUES (:id_aut, :titre, :corps, :date_crea, :date_modif)');
                             $publication->execute([
                                 "id_aut" => $user['id_aut'],
-                                "titre" => $titre,
-                                "corps" => $contenu,
+                                "titre" => htmlentities($titre),
+                                "corps" => htmlentities($contenu), // htmlentities pour éviter les failles XSS !!!!!!!!!!
                                 "date_crea" => date('Y-m-d H:i:s'),
                                 "date_modif" => date('Y-m-d H:i:s')
                             ]);
