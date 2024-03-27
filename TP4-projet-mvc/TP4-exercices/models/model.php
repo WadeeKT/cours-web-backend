@@ -73,13 +73,13 @@ function getRandoById(int $numRando): array {
 function addParticipant(int $numRando, string $pseudo): bool {
   $db = getDatabase();
   $query = $db->prepare('INSERT INTO participation (numRando, pseudo) VALUES (?, ?)');
-  return $query->execute([$numRando, $pseudo]);
+  return $query->execute([htmlentities($numRando), htmlentities($pseudo)]);
 }
 
 function getParticipationByMembre(string $pseudo): array {
   $db = getDatabase();
   $query = $db->prepare('SELECT numRando FROM participation WHERE pseudo = :pseudo');
-  $query->execute(['pseudo' => $pseudo]);
+  $query->execute(['pseudo' => htmlentities($pseudo)]);
   $res = $query->fetchAll();
   if (!$res) {
     // si l'on retournait $query->fetchAll() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
