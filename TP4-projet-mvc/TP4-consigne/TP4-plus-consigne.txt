@@ -1,0 +1,31 @@
+Système de Register/Login/Logout
+  - Ajout de mots de passe
+
+Ajout de groupes de membres
+  - Un membre peut appartenir à plusieurs groupes
+  - Un groupe peut contenir plusieurs membres
+  - Si un groupe s'inscrit à une randonnée, tous les membres du groupe sont inscrits
+  - Si un membre est ajouté à un groupe après l'inscription à une randonnée, il est inscrit à la randonnée
+  - Si un membre est retiré d'un groupe après l'inscription à une randonnée, il est désinscrit de la randonnée
+
+Ajout de système de "j'aime" et commentaire sur les randonnées
+  - Un membre peut aimer une randonnée
+  - Un membre peut commenter une randonnée
+  - Un membre peut supprimer son commentaire
+  - Un membre peut supprimer son "j'aime"
+
+Table : 
+
+  groupe 
+    - idGroupe AI \\
+    - nomGroupe
+    - pseudoChef (C.E. membre)
+  
+  membreGroupe
+    - idGroupe (C.E. groupe) \\
+    - pseudo (C.E. membre) \\
+    - estChef (0 ou 1)
+  
+  participationGroupe
+    - numRando (C.E. randonnee) \\
+    - idGroupe (C.E. groupe) \\

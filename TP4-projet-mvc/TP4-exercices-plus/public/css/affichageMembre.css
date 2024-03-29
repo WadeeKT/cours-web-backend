@@ -1,0 +1,39 @@
+
+main{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.membre {
+  display: block;
+  width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #f8f9fa;
+  color: #212529;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+.membre:hover {
+  background-color: #e9ecef;
+}
+
+.membre img {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
+.membre h2 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.membre p {
+  font-size: 16px;
+}

@@ -1,7 +1,7 @@
 <?php
 
-ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
+session_start();
 
 require 'controllers/controller.php';
 
@@ -14,7 +14,7 @@ $routes = [
     'rechercheRando' => 'rechercheRando', // rechercher une randonnée emmène vers la page randonnee
     'randonnee' => 'randonnee', // afficher les infos d'une randonnée et administrer les participants (fonctionne avec get de l'id de randonnée)
     'membre' => 'membre', // afficher les infos d'un membres et les randonnées auxquelles il participe (fonctionne avec get de l'id de membre)
-    'supprimerParticipation' => 'supprimerParticipation'
+    'seConnecter' => 'seConnecter',
 ];
 
 $action = $_GET['action'] ?? 'affichageMembre'; // ajoutMembre est l'action par défaut
@@ -35,4 +35,5 @@ try {
 } catch (Exception $e) {
     error(500, $e->getMessage());
 }
+
 ?>

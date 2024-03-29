@@ -23,7 +23,7 @@ function getMembre(string $pseudo): array {
   $query->execute(['pseudo' => $pseudo]);
   $res = $query->fetch();
   if (!$res) {
-    // si l'on retournait $query->fetch() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
+    // si l'on retournait $res directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
     return []; 
   }
   return $res;
@@ -50,7 +50,6 @@ function getRandoByTitre(string $titre): array {
   $query->execute(['titre' => $titre]);
   $res = $query->fetch();
   if (!$res) {
-    // si l'on retournait $query->fetch() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
     return []; 
   }
   return $res;
@@ -62,7 +61,6 @@ function getRandoById(int $numRando): array {
   $query->execute(['numRando' => $numRando]);
   $res = $query->fetch();
   if (!$res) {
-    // si l'on retournait $query->fetch() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
     return []; 
   }
   return $res;
@@ -82,7 +80,6 @@ function getParticipationByMembre(string $pseudo): array {
   $query->execute(['pseudo' => htmlentities($pseudo)]);
   $res = $query->fetchAll();
   if (!$res) {
-    // si l'on retournait $query->fetchAll() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
     return []; 
   }
   return $res;
@@ -94,16 +91,24 @@ function getParticipantsByNumRando(int $numRando): array {
   $query->execute(['numRando' => $numRando]);
   $res = $query->fetchAll();
   if (!$res) {
-    // si l'on retournait $query->fetchAll() directement, on retournerait false (bool) si le membre n'existait pas or on veut retourner un tableau (array)
     return []; 
   }
   return $res;
 }
 
-function suppParticipation(int $numRando, string $pseudo): bool {
+// CONNECTION
+
+function connexionMembre(string $pseudo, string $mdp): array {
   $db = getDatabase();
-  $query = $db->prepare("DELETE FROM participation WHERE numRando = :numRando AND pseudo = :pseudo");
-  $res = $query->execute(['numRando' => $numRando, 'pseudo' => $pseudo]);
+  $query = $db->prepare('SELECT pseudo FROM membre WHERE pseudo = :pseudo AND mdp = :mdp');
+  $query->execute([
+    'pseudo' => $pseudo,
+    'mdp' => $mdp
+  ]);
+  $res = $query->fetch();
+  if (!$res) {
+    return [];
+  }
   return $res;
 }
 

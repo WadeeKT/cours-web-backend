@@ -1,5 +1,3 @@
-
-
 <?php if (isset($user)) : ?>
 
   <h2> Informations </h2>
@@ -20,13 +18,8 @@
       $titre = $rando['titre'];
       $dateDep = $rando['dateDep'];
       echo "<a class='rando' href='index.php?action=randonnee&numRando=" . $numRando['numRando'] . "'>";
-        echo "<h2>$titre</h2>";
-        echo "<p>Date de départ : $dateDep</p>";
-        echo "<form id='suppPart' action='index.php?action=supprimerParticipation' method='post'>";
-          echo "<input type='hidden' name='numRando' value='" . $numRando['numRando'] . "'>";
-          echo "<input type='hidden' name='pseudo' value='" . $user['pseudo'] . "'>";
-          echo '<button type="submit" name="supprimerParticipation" class="btn">x</button>';
-        echo "</form>";
+      echo "<h2>$titre</h2>";
+      echo "<p>Date de départ : $dateDep</p>";
       echo "</a>";
     }
   }

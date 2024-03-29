@@ -1,0 +1,63 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.titre{
+  text-align: center;
+  color: #0b1621;
+}
+
+main{
+  min-height: calc(100vh - 188px);
+}
+
+/* header */
+
+header{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.head-haut{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  height: 20px;
+  background-color: #e9e9e9;
+}
+
+.head-haut a, .head-haut li, header a{
+  color: #0b1621;
+  text-decoration: none;
+  list-style: none;
+}
+
+.head-haut li{
+  margin: 0 10px;
+  font-size: .7rem;
+}
+
+.head-haut a:hover{
+  color: #0e1f31
+}
+
+header>div{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  justify-content: space-between;
+  background-color: rgb(245, 245, 245);
+  border-bottom: #d3d3d3 1px solid;
+}
+
+.logoUniv{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

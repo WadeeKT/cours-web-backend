@@ -177,18 +177,26 @@ function rechercheRando(): void
     }
 }
 
-function supprimerParticipation(): void
+function seConnecter(): void
 {
-    if (isset($_POST['numRando'])){
-        $numRando = $_POST['numRando'];
-        $pseudo = $_POST["pseudo"];
-        $res = suppParticipation($numRando, $pseudo);
-        if ($res) {
-            echo "<script> window.alert('Participation supprimée'); </script> ";
-            echo "<script> window.location.href = 'index.php?action=membre&pseudo=$pseudo'; </script> ";
+    if(isset($_POST['mdp'])) {
+        $pseudo = $_POST['pseudo'];
+        $mdp = $_POST['mdp'];
+        $membre = connexionMembre($pseudo, $mdp);
+        if ($membre) {
+            $_SESSION["pseudo"] = $membre['pseudo'];
+            echo "<script> window.location.href = 'index.php'; </script> ";
         } else {
-            error(500, "Erreur lors de la suppression de la participation");
+            echo "<script> window.location.href = 'index.php?action=seConnecter&statut=erreur; </script> ";
+
         }
+    } else {
+        $style = "public/css/ajoutMembre.css";
+        $title = "Se Connecter";
+        require 'views/components/header.php';
+        require 'views/seConnecterView.php';
+        require 'views/components/footer.php';
     }
 }
+
 ?>
