@@ -101,7 +101,7 @@ main > p {
 .rando{
   position: relative;
 }
-.btn{
+.btnSupp{
   position: absolute;
   display: flex;
   justify-content: center;

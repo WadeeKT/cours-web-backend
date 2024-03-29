@@ -25,7 +25,7 @@
         echo "<form id='suppPart' action='index.php?action=supprimerParticipation' method='post'>";
           echo "<input type='hidden' name='numRando' value='" . $numRando['numRando'] . "'>";
           echo "<input type='hidden' name='pseudo' value='" . $user['pseudo'] . "'>";
-          echo '<button type="submit" name="supprimerParticipation" class="btn">x</button>';
+          echo '<button type="submit" name="supprimerParticipation" class="btnSupp">x</button>';
         echo "</form>";
       echo "</a>";
     }
