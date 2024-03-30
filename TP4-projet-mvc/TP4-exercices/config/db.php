@@ -1,7 +1,9 @@
 <?php
-// $db = new PDO('mysql:host=localhost;dbname=club;charset=utf8', 'root', '');
 
-function getDatabase() {
-  return new PDO('mysql:host=localhost;dbname=club;charset=utf8', 'root', '');
-}
+const DB_HOST = "localhost";
+const DB_PORT = "";
+const DB_NAME = "club";
+const DB_USER = "root";
+const DB_PWD = "";
+
 ?>

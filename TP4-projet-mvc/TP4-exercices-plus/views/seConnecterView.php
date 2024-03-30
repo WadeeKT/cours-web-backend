@@ -1,8 +1,8 @@
-<form action="index.php?action='seConnecter'" method="POST">
+<form action="index.php?action=seConnecter" method="POST">
   <label for="pseudo">Pseudo</label>
-  <input type="text" name="pseudo">
+  <input required type="text" name="pseudo">
   <label for="mdp">Mot de passe</label>
-  <input type="password" name="mdp">
+  <input required type="password" name="mdp">
   <input type="submit" value="Se Connecter">
 </form>
 

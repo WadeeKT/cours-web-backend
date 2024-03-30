@@ -2,6 +2,15 @@
 
 require('config/db.php');
 
+function getDatabase() {
+  static $db = null;
+  if ($db == null) {
+    $dsn = 'mysql:host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=utf8';
+    $db = new PDO($dsn, DB_USER, DB_PWD);
+  }
+  return $db;
+}
+
 // fonctions de gestion des membres
 
 function addMembre(string $pseudo, int $age): bool {
