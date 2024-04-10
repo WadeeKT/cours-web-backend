@@ -179,7 +179,7 @@ function rechercheRando(): void
 
 function supprimerParticipation(): void
 {
-    if (isset($_POST['numRando'])){
+    if (isset($_POST['numRando'])) {
         $numRando = $_POST['numRando'];
         $pseudo = $_POST["pseudo"];
         $res = suppParticipation($numRando, $pseudo);
@@ -191,4 +191,3 @@ function supprimerParticipation(): void
         }
     }
 }
-?>
